@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { FiExternalLink, FiAward } from "react-icons/fi";
+import { FiAward, FiEye, FiX } from "react-icons/fi";
 import { portfolioData } from "../data/portfolio";
 
 const { certifications } = portfolioData;
@@ -30,7 +31,8 @@ const colorMap = {
 };
 
 export default function Certifications() {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15   });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15 });
+  const [selectedCert, setSelectedCert] = useState(null);
 
   return (
     <section id="certifications" className="relative py-20">
@@ -60,17 +62,21 @@ export default function Certifications() {
             <span className="text-cyan-400 font-mono text-sm tracking-widest uppercase mb-2 block">
               // 04. certifications
             </span>
+
             <h2 className="text-3xl sm:text-4xl font-bold text-white section-heading inline-block">
               Certifications
             </h2>
           </motion.div>
 
+          {/* Certification Cards */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {certifications.map((cert, index) => {
               const colors = colorMap[cert.color] || colorMap.cyan;
+
               return (
                 <motion.div
                   key={index}
+                  onClick={() => setSelectedCert(cert)}
                   initial={{ opacity: 0, y: 40, scale: 0.9 }}
                   animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
                   transition={{ duration: 0.5, delay: index * 0.15 }}
@@ -79,7 +85,7 @@ export default function Certifications() {
                     boxShadow: `0 20px 40px ${colors.glow}`,
                     y: -4,
                   }}
-                  className={`relative p-6 rounded-2xl border ${colors.border} ${colors.bg} backdrop-blur-sm cursor-default transition-all duration-300`}
+                  className={`relative p-6 rounded-2xl border ${colors.border} ${colors.bg} backdrop-blur-sm cursor-pointer transition-all duration-300`}
                 >
                   {/* Certificate number */}
                   <div className="absolute top-4 right-4 text-4xl font-black opacity-10 text-white">
@@ -87,20 +93,37 @@ export default function Certifications() {
                   </div>
 
                   {/* Icon */}
-                  <div className={`w-14 h-14 rounded-xl ${colors.bg} flex items-center justify-center text-3xl mb-4 border ${colors.border}`}>
+                  <div
+                    className={`w-14 h-14 rounded-xl ${colors.bg} flex items-center justify-center text-3xl mb-4 border ${colors.border}`}
+                  >
                     {cert.icon}
                   </div>
 
                   {/* Content */}
-                  <h3 className={`text-lg font-bold text-white mb-1`}>{cert.name}</h3>
-                  <p className={`text-sm font-medium ${colors.text} mb-3`}>{cert.issuer}</p>
+                  <h3 className="text-lg font-bold text-white mb-1">
+                    {cert.name}
+                  </h3>
+
+                  <p className={`text-sm font-medium ${colors.text} mb-3`}>
+                    {cert.issuer}
+                  </p>
+
+                  <p className="text-xs text-slate-400 flex items-center gap-1 mt-2">
+                    <FiEye size={13} />
+                    Click to preview certificate
+                  </p>
 
                   {/* Footer */}
                   <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-700/40">
-                    <span className={`text-xs px-2.5 py-1 rounded-full font-mono ${colors.badge}`}>
+                    <span
+                      className={`text-xs px-2.5 py-1 rounded-full font-mono ${colors.badge}`}
+                    >
                       {cert.year}
                     </span>
-                    <div className={`flex items-center gap-1 text-xs ${colors.text} font-mono`}>
+
+                    <div
+                      className={`flex items-center gap-1 text-xs ${colors.text} font-mono`}
+                    >
                       <FiAward size={12} />
                       Certified
                     </div>
@@ -109,6 +132,57 @@ export default function Certifications() {
               );
             })}
           </div>
+
+          {/* Certificate Preview Modal */}
+          <AnimatePresence>
+            {selectedCert && (
+              <motion.div
+                className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+                onClick={() => setSelectedCert(null)}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <motion.div
+                  className="relative w-full max-w-5xl bg-slate-900 border border-cyan-500/30 rounded-2xl p-5 shadow-2xl"
+                  onClick={(e) => e.stopPropagation()}
+                  initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.9, y: 30 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  {/* Close Button */}
+                  <button
+                    onClick={() => setSelectedCert(null)}
+                    className="absolute top-4 right-4 text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-full p-2 transition"
+                    aria-label="Close certificate preview"
+                  >
+                    <FiX size={22} />
+                  </button>
+
+                  {/* Modal Header */}
+                  <div className="mb-5 pr-12">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white">
+                      {selectedCert.name}
+                    </h3>
+
+                    <p className="text-sm text-cyan-400 mt-1">
+                      {selectedCert.issuer} • {selectedCert.year}
+                    </p>
+                  </div>
+
+                  {/* Certificate Image */}
+                  <div className="bg-slate-950/70 rounded-xl border border-slate-700/50 p-3">
+                    <img
+                      src={selectedCert.image}
+                      alt={`${selectedCert.name} certificate`}
+                      className="w-full max-h-[75vh] object-contain rounded-lg"
+                    />
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Decorative divider */}
           <motion.div

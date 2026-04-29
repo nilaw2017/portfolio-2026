@@ -43,11 +43,28 @@ export const portfolioData = {
 
   certifications: [
     {
-      name: "Cybersecurity",
-      issuer: "Broadway Infosys",
+      name: "CrowdStrike XDR",
+      issuer: "CrowdStrike",
       icon: "🔐",
       color: "cyan",
+      year: "2026",
+      image: "/certs/CrowdStrikeXDR.png",
+    },
+    {
+      name: "IBM Instana",
+      issuer: "IBM",
+      icon: "📊",
+      color: "blue",
+      year: "2026",
+      image: "/certs/IBM-instana.png",
+    },
+    {
+      name: "React Role",
+      issuer: "HackerRank",
+      icon: "⚛️",
+      color: "green",
       year: "2024",
+      image: "/certs/ReactRole.jpg",
     },
     {
       name: "Data Algorithm",
@@ -55,13 +72,7 @@ export const portfolioData = {
       icon: "📊",
       color: "green",
       year: "2023",
-    },
-    {
-      name: "React Role",
-      issuer: "HackerRank",
-      icon: "⚛️",
-      color: "blue",
-      year: "2023",
+      image: "/certs/DataAlgorithm.jpg",
     },
   ],
 
