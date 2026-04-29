@@ -3,7 +3,7 @@ export const portfolioData = {
     name: "Nilaw Manandhar",
     title: "Cybersecurity Enthusiast & Full Stack Developer",
     subtitle: "Currently pursuing Advanced Cybersecurity at Broadway Infosys",
-    location: "Naikap, Kathmandu",
+    location: "Kathmandu",
     email: "nilaw.work@gmail.com",
     phone: "+977 9840835463",
     website: "www.nilaw.com.np",
@@ -67,11 +67,22 @@ export const portfolioData = {
 
   experience: [
     {
+      company: "Raechal Enterprises Pvt. Ltd.",
+      role: "Associate SIEM Engineer",
+      period: "Recent",
+      type: "Full Time",
+      current: true,
+      bullets: [
+        "CrowdStrike SIEM Engineer",
+        "IBM Instana Application Performance Management (APM) Engineer"
+      ],
+    },
+    {
       company: "CodeDrops Tech Pvt. Ltd.",
       role: "Full Stack Developer",
       period: "Recent",
       type: "Full Time",
-      current: true,
+      current: false,
       bullets: [
         "Developed in-house project (GoTime – web attendance system) as well as outsourcing projects",
         "Worked with ReactJS, MySQL, MongoDB, NodeJS, API integration",
