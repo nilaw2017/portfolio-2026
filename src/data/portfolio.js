@@ -70,7 +70,7 @@ export const portfolioData = {
       name: "Data Algorithm",
       issuer: "HackerRank",
       icon: "📊",
-      color: "green",
+      color: "cyan",
       year: "2023",
       image: "/certs/DataAlgorithm.jpg",
     },
