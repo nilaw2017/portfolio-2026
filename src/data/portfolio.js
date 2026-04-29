@@ -72,6 +72,7 @@ export const portfolioData = {
       period: "Recent",
       type: "Full Time",
       current: true,
+      tech: ["CrowdStrike", "SIEM", "IBM Instana", "APM"],
       bullets: [
         "CrowdStrike SIEM Engineer",
         "IBM Instana Application Performance Management (APM) Engineer"
@@ -83,6 +84,7 @@ export const portfolioData = {
       period: "Recent",
       type: "Full Time",
       current: false,
+      tech: ["ReactJS", "NodeJS", "MySQL", "MongoDB", "REST API", "GoTime"],
       bullets: [
         "Developed in-house project (GoTime – web attendance system) as well as outsourcing projects",
         "Worked with ReactJS, MySQL, MongoDB, NodeJS, API integration",
@@ -98,6 +100,7 @@ export const portfolioData = {
       period: "Prior",
       type: "Internship",
       current: false,
+      tech: ["EJS", "SCSS/SASS", "HTML/CSS", "Figma", "PSD"],
       bullets: [
         "Completed several projects based on EJS and SASS/SCSS (Backend-friendly integration)",
         "Minor frontend and backend updates on the company's attendance system",

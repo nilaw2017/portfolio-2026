@@ -96,36 +96,23 @@ function ExperienceCard({ job, index, inView }) {
           </ul>
 
           {/* Tech stack pills for Full Stack role */}
-          {job.current && (
-            <div className="mt-5 pt-5 border-t border-slate-700/40">
-              <p className="text-xs text-slate-500 font-mono mb-3">// tech used</p>
-              <div className="flex flex-wrap gap-2">
-                {["ReactJS", "NodeJS", "MySQL", "MongoDB", "REST API", "GoTime"].map((t) => (
-                  <span
-                    key={t}
-                    className="text-xs px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-mono"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-          {!job.current && (
-            <div className="mt-5 pt-5 border-t border-slate-700/40">
-              <p className="text-xs text-slate-500 font-mono mb-3">// tech used</p>
-              <div className="flex flex-wrap gap-2">
-                {["EJS", "SCSS/SASS", "HTML/CSS", "Figma", "PSD"].map((t) => (
-                  <span
-                    key={t}
-                    className="text-xs px-2.5 py-1 rounded-full bg-slate-700/50 text-slate-400 border border-slate-600/40 font-mono"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
+          <div className="mt-5 pt-5 border-t border-slate-700/40">
+  <p className="text-xs text-slate-500 font-mono mb-3">// tech used</p>
+  <div className="flex flex-wrap gap-2">
+    {job.tech.map((t) => (
+      <span
+        key={t}
+        className={`text-xs px-2.5 py-1 rounded-full font-mono border ${
+          job.current
+            ? "bg-cyan-500/10 text-cyan-400 border-cyan-500/20"
+            : "bg-slate-700/50 text-slate-400 border-slate-600/40"
+        }`}
+      >
+        {t}
+      </span>
+    ))}
+  </div>
+</div>
         </motion.div>
       </div>
     </motion.div>

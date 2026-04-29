@@ -30,7 +30,7 @@ export default function Footer() {
               © 2026 Nilaw Manandhar. All rights reserved.
             </p>
             <p className="text-slate-600 text-xs mt-1 flex items-center gap-1 justify-center sm:justify-start">
-              Built with <FiHeart size={10} className="text-red-400" /> using React & Tailwind
+              Built with <FiHeart size={10} className="text-red-400" /> using NextJS & TailwindCSS
             </p>
           </div>
 
@@ -70,7 +70,7 @@ export default function Footer() {
         {/* Bottom line */}
         <div className="mt-6 pt-6 border-t border-slate-800/60 text-center">
           <p className="text-slate-600 text-xs font-mono">
-            // Nilaw Manandhar | Cybersecurity Enthusiast & Full Stack Developer | Naikap, Kathmandu, Nepal
+            // Nilaw Manandhar | Cybersecurity Enthusiast & Full Stack Developer | Kathmandu, Nepal
           </p>
         </div>
       </div>

@@ -30,7 +30,7 @@ const colorMap = {
 };
 
 export default function Certifications() {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15   });
 
   return (
     <section id="certifications" className="relative py-20">

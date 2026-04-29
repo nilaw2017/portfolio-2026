@@ -120,10 +120,8 @@ export default function Hero() {
             >
               <TypewriterText
                 texts={[
-                  "Cybersecurity Enthusiast",
-                  "Full Stack Developer",
+                  "SIEM Engineer | APM Engineer",
                   "MERN Stack Developer",
-                  "Problem Solver",
                 ]}
                 speed={70}
                 pauseTime={2500}
