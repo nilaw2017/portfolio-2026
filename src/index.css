@@ -1,0 +1,344 @@
+@import "tailwindcss";
+
+/* ===========================
+   CSS Custom Properties
+   =========================== */
+:root {
+  --cyan: #06b6d4;
+  --cyan-dim: rgba(6, 182, 212, 0.15);
+  --cyan-glow: rgba(6, 182, 212, 0.4);
+  --green: #10b981;
+  --teal: #14b8a6;
+  --bg-dark: #050d1a;
+  --bg-card: #0a1628;
+  --bg-card2: #0d1f3c;
+  --border-color: rgba(6, 182, 212, 0.2);
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+}
+
+/* ===========================
+   Base
+   =========================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-mono, code, pre, kbd {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+}
+
+/* ===========================
+   Custom Scrollbar
+   =========================== */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #050d1a;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(6, 182, 212, 0.35);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.6);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(6, 182, 212, 0.35) transparent;
+}
+
+/* ===========================
+   Glow / Shadow Effects
+   =========================== */
+.glow-cyan {
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.35), 0 0 50px rgba(6, 182, 212, 0.1);
+}
+
+.glow-text-cyan {
+  text-shadow: 0 0 30px rgba(6, 182, 212, 0.7), 0 0 60px rgba(6, 182, 212, 0.3);
+}
+
+.border-glow {
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  box-shadow:
+    0 0 20px rgba(6, 182, 212, 0.12),
+    inset 0 0 20px rgba(6, 182, 212, 0.04);
+}
+
+/* ===========================
+   Grid Background
+   =========================== */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(6, 182, 212, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ===========================
+   Animations
+   =========================== */
+
+/* Typewriter blinking cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  display: inline-block;
+  animation: blink 1s step-end infinite;
+}
+
+/* Neon flicker */
+@keyframes neonFlicker {
+  0%, 100% {
+    text-shadow:
+      0 0 10px #06b6d4,
+      0 0 20px #06b6d4,
+      0 0 40px #06b6d4,
+      0 0 80px #06b6d4;
+  }
+  50% {
+    text-shadow:
+      0 0 5px #06b6d4,
+      0 0 10px #06b6d4;
+  }
+}
+.neon-text {
+  animation: neonFlicker 3s ease-in-out infinite;
+}
+
+/* Float */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+.float-animation {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Pulse cyan ring */
+@keyframes pulse-cyan {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(6, 182, 212, 0); }
+}
+.pulse-cyan {
+  animation: pulse-cyan 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Progress bar fill */
+@keyframes progressFill {
+  from { width: 0; }
+  to { width: var(--target-width); }
+}
+
+/* Orbit rotation */
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg); }
+}
+
+/* Scan lines */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+.scanline::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(transparent, rgba(6, 182, 212, 0.05), transparent);
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #06b6d4, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===========================
+   Navbar
+   =========================== */
+.navbar-blur {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(5, 13, 26, 0.88);
+  border-bottom: 1px solid rgba(6, 182, 212, 0.1);
+}
+
+/* ===========================
+   Section Heading
+   =========================== */
+.section-heading {
+  position: relative;
+  display: inline-block;
+}
+.section-heading::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #06b6d4, #10b981);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* ===========================
+   Cards
+   =========================== */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(6, 182, 212, 0.12), 0 0 0 1px rgba(6, 182, 212, 0.2);
+}
+
+/* ===========================
+   Badges
+   =========================== */
+.badge-cyber {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(6, 182, 212, 0.08);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  color: #22d3ee;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: all 0.25s ease;
+  cursor: default;
+}
+.badge-cyber:hover {
+  background: rgba(6, 182, 212, 0.18);
+  border-color: rgba(6, 182, 212, 0.5);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.25);
+  transform: scale(1.05);
+}
+
+/* ===========================
+   Terminal
+   =========================== */
+.terminal-container {
+  background: #08111f;
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  border-radius: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(6, 182, 212, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.terminal-output::-webkit-scrollbar {
+  width: 4px;
+}
+.terminal-output::-webkit-scrollbar-thumb {
+  background: rgba(6, 182, 212, 0.25);
+  border-radius: 2px;
+}
+
+/* ===========================
+   Timeline
+   =========================== */
+.timeline-dot {
+  position: relative;
+}
+.timeline-dot::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  width: 10px;
+  height: 10px;
+  background: #06b6d4;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 10px #06b6d4;
+}
+
+/* ===========================
+   Form inputs
+   =========================== */
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.25);
+}
+
+/* Selection */
+::selection {
+  background: rgba(6, 182, 212, 0.3);
+  color: #fff;
+}
+
+/* ===========================
+   Utility overrides
+   =========================== */
+.text-balance {
+  text-wrap: balance;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Loading shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Section backgrounds */
+.section-alt {
+  background: rgba(10, 20, 40, 0.4);
+}
+
+/* Gradient orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+.orb-cyan {
+  background: rgba(6, 182, 212, 0.07);
+}
+.orb-teal {
+  background: rgba(20, 184, 166, 0.06);
+}
+.orb-indigo {
+  background: rgba(99, 102, 241, 0.05);
+}
